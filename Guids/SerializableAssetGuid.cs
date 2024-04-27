@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace UnturnedSerializables.Guids
 {
-    internal class SerializableAssetGuid : SerializableGuid
+    public class SerializableAssetGuid : SerializableGuid
     {
         [XmlAttribute("Name")] public string Name => Assets.find(Guid)?.FriendlyName;
 

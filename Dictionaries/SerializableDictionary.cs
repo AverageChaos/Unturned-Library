@@ -3,7 +3,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace UnturnedSerializables.Dictio
+namespace UnturnedSerializables.Dictionaries
 {
     [XmlRoot("Dictionary")]
     public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IXmlSerializable
