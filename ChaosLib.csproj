@@ -55,6 +55,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serializables\Unturned\AssetGuid.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
