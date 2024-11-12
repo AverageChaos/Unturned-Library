@@ -3,7 +3,7 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
 
-namespace UnturnedSerializables.Dictionaries
+namespace ChaosLib.Serializables
 {
     [XmlRoot("Dictionary")]
     public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IXmlSerializable
@@ -23,11 +23,17 @@ namespace UnturnedSerializables.Dictionaries
             while (reader.IsStartElement("Item"))
             {
                 reader.ReadStartElement("Item");
-                TKey key = (TKey)keySerializer.Deserialize(reader);
-                TValue value = (TValue)valueSerializer.Deserialize(reader);
-                reader.ReadEndElement();
 
-                Add(key, value);
+                try
+                {
+                    TKey key = (TKey)keySerializer.Deserialize(reader);
+                    TValue value = (TValue)valueSerializer.Deserialize(reader);
+
+                    Add(key, value);
+                }
+                catch { }
+
+                reader.ReadEndElement();
             }
 
             reader.ReadEndElement();
