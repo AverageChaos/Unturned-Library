@@ -37,7 +37,6 @@
 		OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 		SOFTWARE.
 	</Copyright>
-    <PackageIcon>Icon.png</PackageIcon>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <FileVersion>1.0.0</FileVersion>
     <NeutralLanguage>en-AG</NeutralLanguage>
