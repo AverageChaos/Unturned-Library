@@ -13,9 +13,11 @@
 		foreach (MethodInfo mi in type.GetMethods())
 		{
 		    RepeatingAttribute ra = mi.GetCustomAttribute<RepeatingAttribute>();
-		    ra?.Initalize(mi, utcNow.AddSeconds(ra.SecondsBeforeStart));
-
- 		    RepeatingMethods.Add(ra);
+		    if (ra != null)
+		    {
+		        ra.Initalize(mi, utcNow.AddSeconds(ra.SecondsBeforeStart));
+		        RepeatingMethods.Add(ra);
+		    }
 		}
 	    }
 	}
