@@ -6,11 +6,10 @@ namespace ChaosLib.Attributes
     [AttributeUsage(AttributeTargets.Method, Inherited = false, AllowMultiple = false)]
     public sealed class RepeatingAttribute : Attribute
     {
-        public float SecondsBeforeStart;
-        public float SecondsUntilRepeated;
-
-        private MethodInfo MethodInfo;
-        private DateTime NextUpdate;
+        private readonly float _secondsBeforeStart;
+        private readonly float _secondsUntilRepeated;
+        private MethodInfo _methodInfo;
+        private DateTime _nextUpdate;
 
         public RepeatingAttribute(float secondsBeforeStart, float secondsUntilRepeated)
         {
@@ -20,23 +19,23 @@ namespace ChaosLib.Attributes
             if (secondsUntilRepeated <= 0.001f)
                 throw new Exception("Repeat rate has to be more than 0.001)");
 
-            SecondsBeforeStart = secondsBeforeStart;
-            SecondsUntilRepeated = secondsUntilRepeated;
+            _secondsBeforeStart = secondsBeforeStart;
+            _secondsUntilRepeated = secondsUntilRepeated;
         }
 
-        public void Initalize(MethodInfo methodInfo, DateTime nextUpdate)
+        public void Initalize(MethodInfo methodInfo, DateTime utcNow)
         {
-            MethodInfo = methodInfo;
-            NextUpdate = nextUpdate;
+            _methodInfo = methodInfo;
+            _nextUpdate = utcNow.AddSeconds(_secondsBeforeStart);
         }
 
         public void Update(DateTime utcNow)
         {
-            if (NextUpdate > utcNow)
+            if (_nextUpdate > utcNow)
                 return;
 
-            MethodInfo.Invoke(null, null);
-            NextUpdate = utcNow.AddSeconds(SecondsUntilRepeated);
+            _methodInfo.Invoke(null, null);
+            _nextUpdate = utcNow.AddSeconds(_secondsUntilRepeated);
         }
     }
 }
