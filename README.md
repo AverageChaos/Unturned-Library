@@ -15,7 +15,7 @@
 		    RepeatingAttribute ra = mi.GetCustomAttribute<RepeatingAttribute>();
 		    if (ra != null)
 		    {
-		        ra.Initalize(mi, utcNow.AddSeconds(ra.SecondsBeforeStart));
+		        ra.Initalize(mi, utcNow);
 		        RepeatingMethods.Add(ra);
 		    }
 		}
