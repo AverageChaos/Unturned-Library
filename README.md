@@ -12,8 +12,8 @@
 	```
 - Extensions:
 	- BarricadeExt
- 		- CreateBarricade - Creates a new Barricade from an asset's guid.
-     	- BarricadeManagerExt
+ 		- CreateBarricade - Creates a new Barricade from an asset's guide.
+	- BarricadeManagerExt
  		- DestroyBarricade - Destroys the Barricade at a transform, and invokes an action before destroying the Barricade that allows the event to be canceled.
 	- DictionaryExt
  		- GetOrAdd - Gets the value of a key or adds the specified default
@@ -21,7 +21,7 @@
 		- GetOrAddNew - Gets the value of a key or adds new value()
 	- PlayerInventoryExt
  		- EInventoryPage - Enum containing names and indexes for all inventory pages
-    	- PlayerSavedataExt
+	- PlayerSavedataExt
  		- ReadBlock - Same as PlayerSavedata.ReadBlock(), but takes a full path instead of PlayerID
 		- WriteBlock - Same as PlayerSavedata.WriteBlock(), but takes a full path instead of PlayerID
 - Serializables:
