@@ -17,7 +17,7 @@
  		- DestroyBarricade - Destroys the Barricade at a transform, and invokes an action before destroying the Barricade that allows the event to be canceled.
 	- DictionaryExt
  		- GetOrAdd - Gets the value of a key or adds the specified default
-    		- GetOrAddDefault - Gets the value of a key or adds the default(value)
+     		- GetOrAddDefault - Gets the value of a key or adds the default(value)
      		- GetOrAddNew - Gets the value of a key or adds new value()
 	- PlayerInventoryExt
  		- EInventoryPage - Enum containing names and indexes for all inventory pages
