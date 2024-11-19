@@ -5,6 +5,9 @@ using System.Xml.Serialization;
 
 namespace ChaosLib.Serializables.Unturned
 {
+    /// <summary>
+    /// A <see cref="System.Guid"/> that is marked with an <see cref="Asset">Asset's</see> name.
+    /// </summary>
     public struct AssetGuid
     {
         [XmlAttribute("AssetName")]
