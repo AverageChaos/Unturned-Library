@@ -1,7 +1,7 @@
 ﻿using SDG.Unturned;
 using Steamworks;
 
-namespace Sleepers.DataTypes
+namespace ChaosLib.DataTypes
 {
     public struct PlayerID
     {
