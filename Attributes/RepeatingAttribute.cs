@@ -14,18 +14,11 @@ namespace ChaosLib.Attributes
         private MethodInfo _methodInfo;
         private DateTime _nextUpdate;
 
-        static RepeatingAttribute()
-        {
-            AppDomain.CurrentDomain.AssemblyLoad += OnAssemblyLoaded;
-            foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
-                OnAssemblyLoaded(null, new AssemblyLoadEventArgs(asm));
-        }
-
-        private static void OnAssemblyLoaded(object _, AssemblyLoadEventArgs args)
+        public static void InitializeAttributes(Assembly asm)
         {
             DateTime utcNow = DateTime.UtcNow;
             List<RepeatingAttribute> list = new List<RepeatingAttribute>();
-            foreach (Type type in args.LoadedAssembly.GetTypes())
+            foreach (Type type in asm.GetTypes())
             {
                 foreach (MethodInfo mi in type.GetMethods())
                 {
@@ -38,7 +31,7 @@ namespace ChaosLib.Attributes
                 }
             }
 
-            RepeatingMethods.Add(args.LoadedAssembly, list);
+            RepeatingMethods.Add(asm, list);
         }
 
         public RepeatingAttribute(float secondsBeforeStart, float secondsUntilRepeated)
