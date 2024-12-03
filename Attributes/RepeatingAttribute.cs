@@ -17,9 +17,11 @@ namespace ChaosLib.Attributes
         static RepeatingAttribute()
         {
             AppDomain.CurrentDomain.AssemblyLoad += OnAssemblyLoaded;
+            foreach (Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
+                OnAssemblyLoaded(null, new AssemblyLoadEventArgs(asm));
         }
 
-        private static void OnAssemblyLoaded(object sender, AssemblyLoadEventArgs args)
+        private static void OnAssemblyLoaded(object _, AssemblyLoadEventArgs args)
         {
             DateTime utcNow = DateTime.UtcNow;
             List<RepeatingAttribute> list = new List<RepeatingAttribute>();
