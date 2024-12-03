@@ -16,25 +16,27 @@ namespace ChaosLib.Attributes
 
         static RepeatingAttribute()
         {
+            AppDomain.CurrentDomain.AssemblyLoad += OnAssemblyLoaded;
+        }
+
+        private static void OnAssemblyLoaded(object sender, AssemblyLoadEventArgs args)
+        {
             DateTime utcNow = DateTime.UtcNow;
-            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+            List<RepeatingAttribute> list = new List<RepeatingAttribute>();
+            foreach (Type type in args.LoadedAssembly.GetTypes())
             {
-                List<RepeatingAttribute> list = new List<RepeatingAttribute>();
-                foreach (Type type in assembly.GetTypes())
+                foreach (MethodInfo mi in type.GetMethods())
                 {
-                    foreach (MethodInfo mi in type.GetMethods())
-                    {
-                        RepeatingAttribute ra = mi.GetCustomAttribute<RepeatingAttribute>();
-                        if (ra == null)
-                            continue;
+                    RepeatingAttribute ra = mi.GetCustomAttribute<RepeatingAttribute>();
+                    if (ra == null)
+                        continue;
 
-                        ra.Initalize(mi, utcNow);
-                        list.Add(ra);
-                    }
+                    ra.Initalize(mi, utcNow);
+                    list.Add(ra);
                 }
-
-                RepeatingMethods.Add(assembly, list);
             }
+
+            RepeatingMethods.Add(args.LoadedAssembly, list);
         }
 
         public RepeatingAttribute(float secondsBeforeStart, float secondsUntilRepeated)
