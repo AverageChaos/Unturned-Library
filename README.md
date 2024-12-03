@@ -3,6 +3,11 @@
 - Attributes:
 	- Repeating - Used to mark a method to be repeated, requires implementation on the plugin:
 	```csharp
+	static Main()
+	{
+	    RepeatingAttribute.InitializeAttributes(Assembly);
+	}
+
 	public void Update()
 	{
 		DateTime utcNow = DateTime.UtcNow;
